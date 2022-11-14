@@ -175,11 +175,12 @@ class Tree < Node
     end
 
     # Returns binary tree depths
-    def depth(node, cur_node = @root, depth_counter = -1)
-        return nil if node.nil?
+    def depth(node, cur_node = root, depth_counter = -1)
+        return "No such node" if cur_node.nil?
     
         depth_counter += 1
-        comparison = cur_node.data <=> node.data
+
+        comparison = cur_node.data <=> node
     
         case comparison
         when -1
@@ -243,6 +244,7 @@ end
 
 
  # driver script assignment
+arr = [1, 2, 3, 4, 5, 1976, 200, 1899, 2000]
 arr = Array.new(15) { rand(1..100) }
 bst = Tree.new(arr)
 
@@ -294,3 +296,5 @@ puts bst.post_order.join(' ')
 puts "Height"
 puts bst.height
 puts bst.in_order.join(' ')
+
+puts bst.depth(1976)
