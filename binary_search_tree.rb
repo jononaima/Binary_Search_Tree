@@ -161,14 +161,16 @@ class Tree < Node
         arr
     end
     # Height of tree
-    def height(node = root, counter = 0)
+    def height(node = root, counter = -1)
         return counter if node.nil?
     
         counter += 1
-        if height(node.leftNode, counter) > height(node.rightNode, counter)
-            return height(node.leftNode, counter)
+        leftHeight = height(node.leftNode, counter)
+        rightHeight = height(node.rightNode, counter)
+        if leftHeight > rightHeight
+            return leftHeight
         else
-            return height(node.rightNode, counter)
+            return rightHeight
         end
     end
 
@@ -194,7 +196,7 @@ class Tree < Node
     end
     # rebalances the tree
     def rebalance
-        root = build_tree(in_order)
+        self.root = build_tree(in_order)
     end
 
 
@@ -249,16 +251,16 @@ bst.pretty_print
 puts bst.balanced? ? 'Your Binary Search Tree is balanced.' : 'Your Binary Search Tree is not balanced.'
 
 puts 'Level order traversal: '
-puts bst.level_order
+puts bst.level_order.join(' ')
 
 puts 'Preorder traversal: '
-puts bst.pre_order
+puts bst.pre_order.join(' ')
 
 puts 'Inorder traversal: '
-puts bst.in_order
+puts bst.in_order.join(' ')
 
 puts 'Postorder traversal: '
-puts bst.post_order
+puts bst.post_order.join(' ')
 
 10.times do
     a = rand(100..150)
@@ -278,13 +280,17 @@ bst.pretty_print
 puts bst.balanced? ? 'Your Binary Search Tree is balanced.' : 'Your Binary Search Tree is not balanced.'
 
 puts 'Level order traversal: '
-puts bst.level_order
+puts bst.level_order.join(' ')
 
 puts 'Preorder traversal: '
-puts bst.pre_order
+puts bst.pre_order.join(' ')
 
 puts 'Inorder traversal: '
-puts bst.in_order
+puts bst.in_order.join(' ')
 
 puts 'Postorder traversal: '
-puts bst.post_order
+puts bst.post_order.join(' ')
+
+puts "Height"
+puts bst.height
+puts bst.in_order.join(' ')
